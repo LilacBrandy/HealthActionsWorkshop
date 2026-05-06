@@ -2,8 +2,6 @@ name: Hello World Training Workflow
 
 on:
   workflow_dispatch:
-  issues:
-    types: [opened, edited]
 
 jobs:
   greet:
