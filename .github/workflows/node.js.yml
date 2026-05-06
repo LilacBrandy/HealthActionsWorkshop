@@ -13,7 +13,7 @@ jobs:
   build:
     name: "Build and Test"
     runs-on: ubuntu-latest
-  permissions:
+        permissions:
     # Required to allow actions/checkout to clone the repository onto the runner
     contents: read
     # Required to allow the vitest coverage action to write a comment into the pull request
