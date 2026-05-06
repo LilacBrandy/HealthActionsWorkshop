@@ -72,3 +72,35 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+    outputs:
+      container: ${{ steps.meta.outputs.tags }}
+
+  staging:
+    name: Deploy to Staging
+    needs: [ package-and-publish ]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    environment:
+      name: staging
+      url: "https://${{ steps.deploy.outputs.fqdn }}"
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Log into Azure using OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZ_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZ_TENANT_ID }}
+          subscription-id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
+
+      - name: Deploy resources
+        uses: azure/arm-deploy@v2
+        id: deploy
+        with:
+          scope: subscription
+          region: eastus
+          template: ./infra/container-app/main.bicep
+          parameters: "containerImage=${{ needs.package-and-publish.outputs.container }} env=staging"
