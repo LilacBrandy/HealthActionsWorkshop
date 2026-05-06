@@ -3,11 +3,6 @@ name: Hello World Training Workflow
 on:
   workflow_dispatch:
 
-name: Hello World Training Workflow
-
-on:
-  workflow_dispatch:
-
 jobs:
   greet:
     env:
