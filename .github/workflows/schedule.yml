@@ -3,12 +3,7 @@ name: Schedule and Dispatch Lab
 on:
   schedule:
     - cron: "*/5 * * * *" # every 5 minutes
-  workflow_dispatch:
-    inputs:
-      env:
-        description: "Environment to test"
-        required: false
-        default: "staging"
+
 
 jobs:
   test:
