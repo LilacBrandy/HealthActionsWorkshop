@@ -48,3 +48,19 @@ jobs:
         with:
           name: test-log-${{ matrix.os }}-${{ matrix.node }}
           path: test-${{ matrix.os }}-${{ matrix.node }}.log
+
+  deploy:
+    needs: test
+    if: ${{ needs.test.outputs.result == 'success' && github.ref == 'refs/heads/main' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
+        node: [20, 22]
+    steps:
+      - name: Download test log
+        uses: actions/download-artifact@v4
+        with:
+          name: test-log-${{ matrix.os }}-${{ matrix.node }}
+      - run: echo "Deploying to production"        
