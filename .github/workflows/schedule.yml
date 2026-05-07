@@ -3,7 +3,6 @@ name: Schedule and Dispatch Lab
 on:
   schedule:
     - cron: "*/5 * * * *"
-  workflow_dispatch:
 
 jobs:
   test:
