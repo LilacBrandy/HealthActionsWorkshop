@@ -42,7 +42,7 @@ These are the self-serve documents you can follow to complete this workshop. If 
 4. **[Security with Actions](./docs/004-security.md)**
 5. **[Lift-off - Deployment with Actions](./docs/005-deployment.md)**
 
-### Advanced Topics (Optional)
+
 
 There are a number of advanced topics you can explore once you have completed the main workshop:
 
