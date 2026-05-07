@@ -63,4 +63,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: test-log-${{ matrix.os }}-${{ matrix.node }}
-      - run: echo "Deploying to production"        
+      - run: echo "Deploying to production"     
+  concurrency:
+    group: ${{ github.ref }}
+    cancel-in-progress: true   
