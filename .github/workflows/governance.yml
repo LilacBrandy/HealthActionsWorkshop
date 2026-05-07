@@ -1,8 +1,7 @@
 name: Governance - Build, Test & Attest
 
 on:
-  push:
-  pull_request:
+
   workflow_dispatch:
 
 permissions:
